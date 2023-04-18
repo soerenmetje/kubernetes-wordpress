@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  TZ: "Europe/Berlin"
+  MYSQL_DATABASE: "wordpressdb"
+  MYSQL_USER: "wordpressuser"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: configmap-env

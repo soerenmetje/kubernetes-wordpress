@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: swiss-army-knife
+  labels:
+    app: swiss-army-knife
+spec:
+  containers:
+    - name: swiss-army-knife
+      image: leodotcloud/swiss-army-knife:latest
+      command: ["/bin/sleep", "3650d"]
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+          - name: wordpress-persistent-storage
+            mountPath: /var/www/html
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
+  volumes:
+    - name: wordpress-persistent-storage
+      persistentVolumeClaim:
+        claimName: wp-pv-claim
+    - name: mysql-persistent-storage
+      persistentVolumeClaim:
+        claimName: mysql-pv-claim
+  restartPolicy: Always
